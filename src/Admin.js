@@ -423,15 +423,17 @@ import Employee from './Employee';
 //     </div>
 //   );
 // }
- import Beneficiaries from './Beneficiaries';
+// import Beneficiaries from './Beneficiaries';
+
 //import PrimarySearchAppBar from './search';
-import { StyledEngineProvider } from '@mui/material/styles';
+//import { StyledEngineProvider } from '@mui/material/styles'
+import FieldStaff from './FieldStaff'
 
 export default function Admin(){
 
   return (
     
-      <Beneficiaries />
+      <FieldStaff />
     
   );
 }
