@@ -27,6 +27,7 @@ import FieldStuffs from './FieldStuffs'
 import Beneficiaries from './Beneficiaries'
 import Programs from './Program'
 import Dashboard  from './Dashboard';
+
 import {Switch,Route} from 'react-router-dom'
 import { NavLink } from 'react-router-dom';
 
@@ -37,6 +38,11 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Chart from './Chart';
 import { blue, blueGrey,grey,white } from '@material-ui/core/colors';
+import SchoolAndHealthProgram from './programsPages/SchoolAndHealthProgram';
+import AdolescentNutrition from './programsPages/AdolescentNutrition';
+import WaterSanitationAndHygiene from './programsPages/WaterSanitationAndHygiene';
+import IntergratedHomeStead from './programsPages/IntergratedHomeStead'
+import InfantAndYoungChild from './programsPages/InfantAndYoungChild'
 
 const drawerWidth = 240;
 
@@ -124,10 +130,11 @@ const useStyles = makeStyles((theme) => ({
   },
   fixedHeight: {
     height: 240,
-  },
+  }, 
   wrapper:{
     padding:theme.spacing(8,2)
   },
+    
   navlinks:{
     color:blueGrey["A400"],
     "& : hover ":{
@@ -228,7 +235,7 @@ const MiniDrawer = props => {
                 color="inherit"
                 aria-label="dec-dash"
                 >
-                  joseph Mkonda
+                
                   {/* <NotificationsNoneOutlinedIcon/> */}
             </IconButton>
 
@@ -299,10 +306,29 @@ const MiniDrawer = props => {
           <Route exact path = "/beneficiaries" render={() => <Beneficiaries/>}/>
           <Route exact path = "/programs" render={() => <Programs/>}/>
           <Route exact path = "/fieldsstaffs" render={() => <FieldStuffs/>}/>
+          <Route exact path = "/programs/intervetions" render={()=><SchoolAndHealthProgram/>}/>
+          <Route exact path="/programs/adolescentnutrion" render={() => <AdolescentNutrition/>}/>
+          <Route exact path="/programs/WaterSanitationAndHygiene" render={() => <WaterSanitationAndHygiene/>}/>
+          <Route exact path = "/programs/IntergratedHomeStead" render = {() => <IntergratedHomeStead/>}/>
+          <Route exact path = "/programs/InfantAndYoungChild" render = {() => <InfantAndYoungChild/>}/>
+
+          </Switch>
+
+          </Box>
           
 
-        </Switch>
-        </Box>
+        
+          
+      
+          
+          
+
+      
+
+      
+   
+      
+
 
         {/* removed stuff here */}
 

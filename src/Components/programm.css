@@ -1,0 +1,33 @@
+.programmsBox{
+    width:auto;
+    display: flex;
+    justify-content: space-between;
+}
+.programmsItem{
+    flex: 1;
+    margin: 0px 20px;
+    padding: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 10px 10px 83px -13px rgba(165, 183, 187, 0.72);
+-webkit-box-shadow: 10px 10px 83px -13px rgba(97, 167, 172, 0.72);
+-moz-box-shadow: 10px 10px 83px -13px rgba(54, 119, 108, 0.72);
+}
+
+.programTitle{
+    font-weight: bold;
+    color: blueviolet;
+}
+.programDiscription{
+    margin: 10px 0px 0px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.programmsBox2{
+    padding-top: 20px;
+    width:auto;
+    display: flex;
+    justify-content: space-between;
+
+}
