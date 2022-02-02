@@ -1,12 +1,21 @@
 import React from 'react';
 import { makeStyles, alpha } from '@material-ui/core/styles';
-import { Typography, Paper, Grid, Card, CardContent, CardMedia, Avatar, IconButton, Toolbar } from '@material-ui/core';
+import { Typography, Paper, Grid, Card, CardContent, CardMedia, Avatar, IconButton, Toolbar, CardHeader } from '@material-ui/core';
 import PhoneIcon from '@material-ui/icons/Phone';
 import AlternateEmailIcon from '@material-ui/icons/AlternateEmail';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 import AddIcon from '@material-ui/icons/Add';
 import Tooltip from '@material-ui/core/Tooltip';
 import Fab from '@material-ui/core/Fab';
+import Dialog from '@material-ui/core/Dialog';
+
+import MuiDialogContent from '@material-ui/core/DialogContent';
+import MuiDialogActions from '@material-ui/core/DialogActions';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import StaffForm from './Users/StaffForm';
+import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import CloseIcon from '@material-ui/icons/Close';
+import { withStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -56,25 +65,87 @@ const useStyles = makeStyles((theme) => ({
           },
           cardContent: {
             padding: theme.spacing(2, 0, 0, 0),
-          }
+          },
      
   }));
+
+  const styles = (theme) => ({
+    root: {
+      margin: 0,
+      padding: theme.spacing(2),
+    },
+    closeButton: {
+      position: 'absolute',
+      right: theme.spacing(1),
+      top: theme.spacing(1),
+      color: theme.palette.grey[500],
+    },
+  });
+
+
+
+
+
+  const DialogTitle = withStyles(styles)((props) => {
+    const { children, classes, onClose, ...other } = props;
+    return (
+      <MuiDialogTitle disableTypography className={classes.root} {...other}>
+        <Typography variant="h6">{children}</Typography>
+        {onClose ? (
+          <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+            <CloseIcon />
+          </IconButton>
+        ) : null}
+      </MuiDialogTitle>
+    );
+  });
+
+  const DialogContent = withStyles((theme) => ({
+    root: {
+      padding: theme.spacing(2),
+    },
+  }))(MuiDialogContent);
+  
+  const DialogActions = withStyles((theme) => ({
+    root: {
+      margin: 0,
+      padding: theme.spacing(1),
+    },
+  }))(MuiDialogActions);
+
 
 export default function FieldStaff(props) {
     const classes = useStyles();
 
+    const [open, setOpen] = React.useState(false);
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
     return (
-        <div className={classes.content}>
+        <div >
             
             <Typography variant='h3' gutterBottom>Field staff</Typography>
 
             
                     <Tooltip title="Add field staff">
                     <Fab color="primary" className={classes.absolute} >
-                        <AddIcon />
+                        <AddIcon onClick={handleClickOpen}/>
                     </Fab>
                     </Tooltip>
-               
+                    <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+                        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                        Add field Staff
+                        </DialogTitle>
+                        <DialogContent dividers>
+                            <StaffForm />
+                        </DialogContent>
+                    </Dialog>
 
             <Paper className={classes.paper}>
             
@@ -86,7 +157,26 @@ export default function FieldStaff(props) {
                         src={props?.content?.picture?.large}
                         className={classes.large}
                         />
+                
+                        {/* <IconButton aria-label="settings">
+                            <MoreVertIcon />
+                        </IconButton> */}
+        
                     </CardMedia>
+
+                {/* <CardHeader
+                    avatar={
+                        <Avatar
+                        alt="Remy Sharp"
+                        src={props?.content?.picture?.large}
+                        className={classes.large}
+                        />
+                    }
+                    action={
+                    <IconButton aria-label="settings">
+                        <MoreVertIcon />
+                    </IconButton>
+                    }/> */}
                     
                         <CardContent className={classes.cardContent}>
                             <Typography
@@ -122,7 +212,7 @@ export default function FieldStaff(props) {
                             align="center"
                             >
                             <LocationOnIcon className={classes.avatar} fontSize="small" />
-                            {props?.content?.location?.city}, {props?.content?.location?.country}
+                            {props?.content?.location?.district}, {props?.content?.location?.area}
                             </Typography>{" "}
                         </CardContent>
                     </Card>

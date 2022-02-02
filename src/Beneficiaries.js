@@ -165,6 +165,12 @@ const programs = [
     title: {
       flex: '1 1 100%',
     },
+    appBarSpacer: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    height: '100vh',
+    overflow: 'auto',
+  }
   }));
   
   const EnhancedTableToolbar = (props) => {
@@ -363,8 +369,8 @@ export default function Beneficiaries() {
 
     return (
             
-        <div className={classes.content} >
-        
+        <div >
+          {/* //<div className={classes.appBarSpacer} /> */}
             <Typography variant='h3' gutterBottom>Beneficiaries</Typography>
 
             <Grid container spacing={3} direction='column' >
