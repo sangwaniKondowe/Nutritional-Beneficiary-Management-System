@@ -41,15 +41,15 @@ function ShoolAndHealthProgram() {
     const classes = useStyles();
     const [modalInsert, setModalInsert] = useState(false);
     const [modalEditor, setModalEditor] = useState(false);
+    const [modalDelete, setModalDelete] = useState(false);
     const [Intervetion,setIntervetion] = useState({
-      CurrentDistrict: " ",
-      ImpactedArea: " ",
-      IntervetionName: " ",
+      District: " ",
+      ImpactArea: " ",
+      InterventionName: " ",
       NumberOfBeneficiaries: '',
-      Partners: " ",
+      PartnerName: " ",
       id: ''
-
-    })
+})
 
     // handle input data function
     const handleChange = e => {
@@ -58,7 +58,7 @@ function ShoolAndHealthProgram() {
           ...prevState,
           [name]:value
         }))
-        console.log(Intervetion)
+        
       }
       //insert data into the table
       const modalInsertFunction = () => {
@@ -70,6 +70,21 @@ function ShoolAndHealthProgram() {
       const modalEditFunction = () => {
         setModalEditor(!modalEditor);
       }
+
+      //delete function
+      const modalDeleteFunction = () => {
+        setModalDelete(!modalDelete);
+      }
+
+      //edit data selection 
+
+      const selectIntervetion =(InterventionName,caso) => {
+        setIntervetion(InterventionName);
+        (caso ==="Edit")? modalEditFunction()
+        :
+        modalDeleteFunction()
+      }
+
     
     
     const columns = [
@@ -81,23 +96,73 @@ function ShoolAndHealthProgram() {
         
         
     ]
+    //  getting an url
+    const baseUrl = "http://127.0.0.1:8000/api/intervetions/";
+    // getting data from api method
+
+    const intervetionGet = async() => {
+      await axios.get(baseUrl)
+      .then(respose =>{
+        setData(respose.data);
+        console.log(respose.data)
+      })
+
+    }
+
+    
+
+    
+
     useEffect(() =>{
-        fetch("http://127.0.0.1:8000/api/intervetions/?format=json")
-        .then(resp =>resp.json())
-        .then(resp => {
-            console.log(resp);
-            setData(resp)})
+      intervetionGet()
+      
     },[])
 
     // adding form data into the table
 
     const addIntervetionPost = async () => {
-        await axios.post("http://127.0.0.1:8000/api/intervetions/",Intervetion)
+        await axios.post(baseUrl,Intervetion)
         .then(respose => {
           setData(data.concat(respose.data));
           modalInsertFunction();
   
         })}
+
+        // updating data inthe table
+       const updateUrl = "http://127.0.0.1:8000/api/intervetion/"
+        const addIntervetionPut = async () => {
+          await axios.put(updateUrl + Intervetion.id + "/",Intervetion)
+          .then(respose => {
+            var dataUpdate = data;
+            dataUpdate.map(InterventionName => {
+              if(InterventionName.id ===Intervetion.id){
+                InterventionName.District = Intervetion.District;
+                InterventionName.ImpactArea = Intervetion.ImpactArea;
+                InterventionName.InterventionName = Intervetion.InterventionName;
+                InterventionName.NumberOfBeneficiaries = Intervetion.NumberOfBeneficiaries;
+                InterventionName.PartnerName = Intervetion.PartnerName;
+                
+              }
+            });
+            setData(dataUpdate)
+            modalEditFunction();
+    
+          }).catch(error =>{
+            console.log(error);
+          })
+        }
+
+
+        const addIntervetionDelete = async () => {
+          await axios.delete(updateUrl + Intervetion.id + "/")
+          .then(respose => {
+            setData(data.filter(InterventionName => InterventionName.id!==Intervetion.id));
+            modalDeleteFunction();
+            }).catch(error=>{
+              console.log(error)
+            })
+        }
+
 
     const dataInsert =(
         <div className={classes.modal}>
@@ -111,14 +176,14 @@ function ShoolAndHealthProgram() {
           <TextField className={classes.inputMaterial} 
           label="intervetion" 
           placeholder='Enter Intervetion Name'
-          name='IntervetionName'
+          name='InterventionName'
           onChange={handleChange}
           />
           <br/>
           <TextField className={classes.inputMaterial} 
           label="Impacted Area" 
           placeholder='Enter Impacted Area'
-          name='ImpactedArea'
+          name='ImpactArea'
           onChange={handleChange}
           />
           <br/>
@@ -133,20 +198,92 @@ function ShoolAndHealthProgram() {
           <TextField className={classes.inputMaterial} 
           label="Partners" 
           placeholder='Enter Partner'
-          name='Partners'
+          name='PartnerName'
           onChange={handleChange}
           />
           <br/>
           <TextField className={classes.inputMaterial} 
           label="District" 
           placeholder='Enter District'
-          name='CurrentDistrict'
+          name='District'
           onChange={handleChange}
           />
           <br/>
           <diV align="right">
             <Button color='primary' onClick ={() =>addIntervetionPost()}>Insert</Button>
             <Button onClick={()=>modalInsertFunction()}>Cancel</Button>
+          </diV>
+        
+        </div>
+  
+      )
+
+      const bodyDelete =(
+        <div className={classes.modal}>
+        <p>Do you want to delete ?<b>{Intervetion&&Intervetion.InterventionName}</b>?</p>
+
+         <div align="right">
+           <Button color="secondary" onClick={() => addIntervetionDelete()}>YES</Button>
+           <Button onClick={() => modalDeleteFunction() }>NO</Button>
+         </div>
+
+        </div>
+      )
+
+      // editting function
+      const dataEdit =(
+        <div className={classes.modal}>
+          <h3 
+          style={{fontWeight:'bold',
+                  textAlign:"center",
+                  color:'blueviolet'}}>
+                    Edit School And Health intervetion</h3>
+  
+  
+          <TextField className={classes.inputMaterial} 
+          label="intervetion" 
+          placeholder='Enter Intervetion Name'
+          name='InterventionName'
+          onChange={handleChange}
+          value={Intervetion&&Intervetion.InterventionName}
+          />
+          <br/>
+          <TextField className={classes.inputMaterial} 
+          label="Impacted Area" 
+          placeholder='Enter Impacted Area'
+          name='ImpactArea'
+          onChange={handleChange}
+          value={Intervetion&&Intervetion.ImpactArea}
+          />
+          <br/>
+          <TextField className={classes.inputMaterial} 
+          label="Target Beneficiaries"
+          placeholder='Enter Number of Beneficiaries'
+          name='NumberOfBeneficiaries'
+          onChange={handleChange}
+          value={Intervetion&&Intervetion.NumberOfBeneficiaries}
+  
+           />
+          <br/>
+          <TextField className={classes.inputMaterial} 
+          label="Partners" 
+          placeholder='Enter Partner'
+          name='PartnerName'
+          onChange={handleChange}
+          value={Intervetion&&Intervetion.PartnerName}
+          />
+          <br/>
+          <TextField className={classes.inputMaterial} 
+          label="District" 
+          placeholder='Enter District'
+          name='District'
+          onChange={handleChange}
+          value={Intervetion&&Intervetion.District}
+          />
+          <br/>
+          <diV align="right">
+            <Button color='primary' onClick={() => addIntervetionPut()}>Edit</Button>
+            <Button onClick={()=>modalEditFunction()}>Cancel</Button>
           </diV>
         
         </div>
@@ -191,11 +328,12 @@ function ShoolAndHealthProgram() {
           {
             icon:Edit,
             tooltip: 'Edit ',
-            //onClick: (event,rowData) => selectIntervetion(rowData, "Edit")
+            onClick: (event,rowData) => selectIntervetion(rowData, "Edit")
           },
           {
             icon:Delete,
-            tooltip:'delete'
+            tooltip:'delete',
+            onClick: (event, rowData) => selectIntervetion(rowData,'delete')
           }
         ]}
         />
@@ -208,13 +346,21 @@ function ShoolAndHealthProgram() {
 
     </Modal>
 
-    {/* <Modal
+    <Modal
     open={modalEditor}
     onClose={modalEditFunction}
     >
-     {dataEditor} 
+     {dataEdit} 
 
-    </Modal> */}
+    </Modal>
+
+    <Modal
+    open={modalDelete}
+    onClose={modalDeleteFunction}
+    >
+     {bodyDelete} 
+
+    </Modal>
 
         </div>
             
