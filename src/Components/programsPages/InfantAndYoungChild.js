@@ -6,13 +6,15 @@ import AddIcon from '@material-ui/icons/Add'
 import Edit from '@material-ui/icons/Edit'
 import Delete from '@material-ui/icons/Delete'
 import Button from '@material-ui/core/Button';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import { IconButton, Typography } from '@material-ui/core'
 
 function InfantAndYoungChild() {
     const [data, setData] = useState([])
     const columns = [
-        {title:"INTERVETION",field:"IntervetionName"},
-        {title:"Impact Area",field:"ImpactedArea"},
-        {title:"Target Beneficiaries",field:"NumberOfBeneficiaries"},
+        {title:"Intervention",field:"IntervetionName"},
+        {title:"Impact area",field:"ImpactedArea"},
+        {title:"Target beneficiaries",field:"NumberOfBeneficiaries"},
         {title:"Partners",field:"partener"},
         {title:"District",field:"District"}
         
@@ -27,29 +29,16 @@ function InfantAndYoungChild() {
 
   return (
     <div>
-    <div style={{
-      display:"flex", 
-      justifyContent:'space-between',
-      color:"white",
-      backgroundColor:'blueviolet',
-      padding: '10px'}}>
-      <text style={{}}>INFANT AND YOUNG CHILD FEEDING</text>
-       <Button 
-       style={{
-         backgroundColor:'white',
-         width: '15px',
-         height: '20px',
-        lineHeight: '16px'
-       }}
-       size="small"
-       startIcon={<AddIcon/>}
-      
-      //  onClick={()=>modalInsertFunction()}
-       >Add</Button>
-      
-  
-      </div>
-    <MaterialTable title="Interventions"
+
+    <Typography variant='h3' gutterBottom>Infant and Young Child Feeding</Typography>
+            <IconButton 
+           // onClick={()=>modalInsertFunction()}
+            >
+           <PostAddIcon/>
+           </IconButton>
+
+
+    <MaterialTable title="Program Intervention(s)"
     data={data}
     columns={columns}
     options={{

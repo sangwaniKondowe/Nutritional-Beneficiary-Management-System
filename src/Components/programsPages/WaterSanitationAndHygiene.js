@@ -6,14 +6,16 @@ import AddIcon from '@material-ui/icons/Add'
 import Edit from '@material-ui/icons/Edit'
 import Delete from '@material-ui/icons/Delete'
 import Button from '@material-ui/core/Button';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import {Modal,TextField, IconButton, Typography} from '@material-ui/core'
 
 
 function WaterSinitationAndHygiene() {
     const [data, setData] = useState([])
     const columns = [
-        {title:"INTERVETION",field:"IntervetionName"},
-        {title:"Impact Area",field:"ImpactedArea"},
-        {title:"Target Beneficiaries",field:"NumberOfBeneficiaries"},
+        {title:"Intervention",field:"IntervetionName"},
+        {title:"Impact area",field:"ImpactedArea"},
+        {title:"Target beneficiaries",field:"NumberOfBeneficiaries"},
         {title:"Partners",field:"Partners"},
         {title:"District",field:"District"}
         
@@ -28,29 +30,13 @@ function WaterSinitationAndHygiene() {
 
   return (
     <div>
-      <div style={{
-    display:"flex", 
-    justifyContent:'space-between',
-    color:"white",
-    backgroundColor:'blueviolet',
-    padding: '10px'}}>
-    <text style={{}}>WATER SANITATION AND HYGIENE</text>
-     <Button 
-     style={{
-       backgroundColor:'white',
-       width: '15px',
-       height: '20px',
-      lineHeight: '16px'
-     }}
-     size="small"
-     startIcon={<AddIcon/>}
-    
-    //  onClick={()=>modalInsertFunction()}
-     >Add</Button>
-    
-
-    </div>
-
+     
+     <Typography variant='h3' gutterBottom>Adolescent Nutrition</Typography>
+            <IconButton 
+            //onClick={()=>modalInsertFunction()}
+            >
+           <PostAddIcon/>
+           </IconButton>
     
     <MaterialTable title="Interventions"
     data={data}

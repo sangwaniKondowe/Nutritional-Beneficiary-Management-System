@@ -52,7 +52,7 @@
         
 //         <div className='programmsBox2 '>
 //             <div className='programmsItem'> 
-//             <Link className="programTitle" to="/programs/IntegratedHomeStead">Integrated Homestead Agriculture</Link>
+            // <Link className="programTitle" to="/programs/IntegratedHomeStead">Integrated Homestead Agriculture</Link>
 //             <div className='programDiscription'>
 //             <img src ="./projectImages/Homestead.jpg" style={{height:"100px" ,width:"120px"}}/>
 //                 </div>
@@ -119,6 +119,10 @@ const useStyles = makeStyles((theme) => ({
     fixedHeight: {
       height: 240,
     },
+    link: {
+        textDecoration: 'none',
+        transitionDuration: 20,
+    }
   }));
   
 
@@ -132,7 +136,7 @@ export default function Program() {
             <Typography variant='h3' gutterBottom> Programs</Typography>
             <Grid container spacing={3} direction='row'>      
             <Grid item >
-            
+            <Link  to="/programs/intervetions" className={classes.link}>
               <Card className={classes.root} elevation={4}>
                 <CardActionArea>
                     <CardMedia
@@ -155,10 +159,12 @@ export default function Program() {
                 </CardActionArea>
                 
                 </Card>
+                </Link>
             </Grid>
         
-        
+            
             <Grid item >
+            <Link to="/programs/adolescentnutrion" className={classes.link}>
             <Card className={classes.root} elevation={4}>
                 <CardActionArea>
                     <CardMedia
@@ -181,9 +187,11 @@ export default function Program() {
                 </CardActionArea>
                 
                 </Card>
+                </Link>
             </Grid>
 
             <Grid item >
+            <Link to="/programs/WaterSanitationAndHygiene" className={classes.link}>
             <Card className={classes.root} elevation={4}>
                 <CardActionArea>
                     <CardMedia
@@ -206,9 +214,11 @@ export default function Program() {
                 </CardActionArea>
                 
                 </Card>
+                </Link>
             </Grid>
 
             <Grid item >
+            <Link to="/programs/IntegratedHomeStead" className={classes.link}>
             <Card className={classes.root} elevation={4}>
                 <CardActionArea>
                     <CardMedia
@@ -231,9 +241,11 @@ export default function Program() {
                 </CardActionArea>
                 
                 </Card>
+                </Link>
             </Grid>
 
             <Grid item>
+            <Link to="/programs/InfantAndYoungChild" className={classes.link}>
             <Card className={classes.root} elevation={4}>
                 <CardActionArea>
                     <CardMedia
@@ -256,9 +268,11 @@ export default function Program() {
                 </CardActionArea>
                 
                 </Card>
+                </Link>
             </Grid>
 
             <Grid item >
+            <Link  className={classes.link}>
             <Card className={classes.root} elevation={4}>
                 <CardActionArea>
                     <CardMedia
@@ -280,6 +294,7 @@ export default function Program() {
                 </CardActionArea>
                 
                 </Card>
+                </Link>
             </Grid>
             </Grid>
         </div>
