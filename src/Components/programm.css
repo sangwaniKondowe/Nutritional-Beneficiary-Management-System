@@ -16,7 +16,10 @@
 
 .programTitle{
     font-weight: bold;
-    color: blueviolet;
+    color: default;
+    align-items: center;
+    font-size: medium;
+    text-decoration: none;
 }
 .programDiscription{
     margin: 10px 0px 0px 0px;
