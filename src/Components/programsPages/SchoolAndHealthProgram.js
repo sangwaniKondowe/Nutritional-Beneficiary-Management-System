@@ -1,10 +1,11 @@
 
 import React,{useState,useEffect} from 'react'
 import AddIcon from '@material-ui/icons/Add'
+import PostAddIcon from '@material-ui/icons/PostAdd';
 import Edit from '@material-ui/icons/Edit'
 import Delete from '@material-ui/icons/Delete'
 import Button from '@material-ui/core/Button';
-import {Modal,TextField} from '@material-ui/core'
+import {Modal,TextField, Typography, IconButton } from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import axios from 'axios';
 
@@ -88,7 +89,7 @@ function ShoolAndHealthProgram() {
     
     
     const columns = [
-        {title:"INTERVETION",field:"InterventionName"},
+        {title:"Intervention",field:"InterventionName"},
         {title:"Impact Area",field:"ImpactArea"},
         {title:"Target Beneficiaries",field:"NumberOfBeneficiaries"},
         {title:"Partners",field:"PartnerName"},
@@ -169,14 +170,22 @@ function ShoolAndHealthProgram() {
           <h3 
           style={{fontWeight:'bold',
                   textAlign:"center",
-                  color:'blueviolet'}}>
-                    Add School And Health intervetion</h3>
+                  }}>
+                    Add School And Health intervention</h3>
   
   
           <TextField className={classes.inputMaterial} 
           label="intervetion" 
+<<<<<<< HEAD
           placeholder='Enter Intervetion Name'
           name='InterventionName'
+||||||| c4e4b0d
+          placeholder='Enter Intervetion Name'
+          name='IntervetionName'
+=======
+          placeholder='Enter Intervention Name'
+          name='IntervetionName'
+>>>>>>> f04a8ef4c63f613686bec5d78106b79822dc65aa
           onChange={handleChange}
           />
           <br/>
@@ -295,34 +304,23 @@ function ShoolAndHealthProgram() {
         <div>
     
 
-        <div style={{
-        display:"flex", 
-        justifyContent:'space-between',
-        color:"white",
-        backgroundColor:'blueviolet',
-        padding: '10px'}}>
-        <text style={{}}>SCHOOL HEALTH AND NUTRITION</text>
-         <Button 
-         style={{
-           backgroundColor:'white',
-           width: '15px',
-           height: '20px',
-          lineHeight: '16px'
-         }}
-         size="small"
-         startIcon={<AddIcon/>}
-        
-         onClick={()=>modalInsertFunction()}
-         >Add</Button>
+       
+        <Typography variant='h3' gutterBottom>School Health and Nutrition</Typography>
+            <IconButton 
+            onClick={()=>modalInsertFunction()}
+            >
+           <PostAddIcon/>
+           </IconButton>
         
     
-        </div>
-        <MaterialTable title="Interventions"
+        
+        <MaterialTable title="Program Intervention(s)"
         data={data}
         columns={columns}
         options={{
             paging:false,
-            exportButton:true
+            exportButton:true,
+            
         }}
         actions={[
           {

@@ -377,7 +377,7 @@ export default function Beneficiaries() {
 
             <Grid container spacing={3} direction='column' >
                 <Grid item xs={12} >
-                    <Paper className={classes.paper} >
+                    <Paper className={classes.paper} elevation={4} >
 
                     <Grid container  direction='row' spacing={1} alignItems='center'>
                         <Grid  item  xs={4}  className={classes.searchPos} >
@@ -427,7 +427,7 @@ export default function Beneficiaries() {
 
                 <Grid item xs={12}>
                 <div className={classes.root}>
-      <Paper className={classes.paper}>
+      <Paper className={classes.paper} elevation={4}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table

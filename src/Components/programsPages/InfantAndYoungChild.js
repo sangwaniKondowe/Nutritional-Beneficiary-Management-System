@@ -6,6 +6,7 @@ import AddIcon from '@material-ui/icons/Add'
 import Edit from '@material-ui/icons/Edit'
 import Delete from '@material-ui/icons/Delete'
 import Button from '@material-ui/core/Button';
+<<<<<<< HEAD
 import {Modal,TextField} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import axios from 'axios';
@@ -33,6 +34,11 @@ const useStyles = makeStyles((theme) => ({
 
   
 }))
+||||||| c4e4b0d
+=======
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import { IconButton, Typography } from '@material-ui/core'
+>>>>>>> f04a8ef4c63f613686bec5d78106b79822dc65aa
 
 function InfantAndYoungChild() {
     const [data, setData] = useState([])
@@ -52,9 +58,9 @@ function InfantAndYoungChild() {
 
 
     const columns = [
-        {title:"INTERVETION",field:"IntervetionName"},
-        {title:"Impact Area",field:"ImpactedArea"},
-        {title:"Target Beneficiaries",field:"NumberOfBeneficiaries"},
+        {title:"Intervention",field:"IntervetionName"},
+        {title:"Impact area",field:"ImpactedArea"},
+        {title:"Target beneficiaries",field:"NumberOfBeneficiaries"},
         {title:"Partners",field:"partener"},
         {title:"District",field:"District"}
         
@@ -148,6 +154,7 @@ function InfantAndYoungChild() {
 
   return (
     <div>
+<<<<<<< HEAD
 
     <div style={{
       display:"flex", 
@@ -172,6 +179,42 @@ function InfantAndYoungChild() {
   
       </div>
     <MaterialTable title="Interventions"
+||||||| c4e4b0d
+    <div style={{
+      display:"flex", 
+      justifyContent:'space-between',
+      color:"white",
+      backgroundColor:'blueviolet',
+      padding: '10px'}}>
+      <text style={{}}>INFANT AND YOUNG CHILD FEEDING</text>
+       <Button 
+       style={{
+         backgroundColor:'white',
+         width: '15px',
+         height: '20px',
+        lineHeight: '16px'
+       }}
+       size="small"
+       startIcon={<AddIcon/>}
+      
+      //  onClick={()=>modalInsertFunction()}
+       >Add</Button>
+      
+  
+      </div>
+    <MaterialTable title="Interventions"
+=======
+
+    <Typography variant='h3' gutterBottom>Infant and Young Child Feeding</Typography>
+            <IconButton 
+           // onClick={()=>modalInsertFunction()}
+            >
+           <PostAddIcon/>
+           </IconButton>
+
+
+    <MaterialTable title="Program Intervention(s)"
+>>>>>>> f04a8ef4c63f613686bec5d78106b79822dc65aa
     data={data}
     columns={columns}
     options={{

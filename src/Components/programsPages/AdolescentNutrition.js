@@ -5,8 +5,8 @@ import AddIcon from '@material-ui/icons/Add'
 import Edit from '@material-ui/icons/Edit'
 import Delete from '@material-ui/icons/Delete'
 import Button from '@material-ui/core/Button';
-
-import {Modal,TextField} from '@material-ui/core'
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import {Modal,TextField, IconButton, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles'
 import axios from 'axios';
 
@@ -80,7 +80,7 @@ function AdolescentNutrition() {
         <h3 
         style={{fontWeight:'bold',
                 textAlign:"center",
-                color:'blueviolet'}}>
+                }}>
                   Add Adolescent Nutrition intervetion</h3>
 
 
@@ -192,11 +192,11 @@ const dataEditor =(
     )
 
     const columns = [
-        {title:"INTERVETION",field:"IntervetionName"},
-        {title:"IMPACT AREA",field:"ImpactedArea"},
-        {title:"TARGET BENEFICiARIES",field:"NumberOfBeneficiaries"},
-        {title:"PARTNERS",field:"Partners"},
-        {title:"DISTRICT",field:"CurrentDistrict"}
+        {title:"Intervention",field:"IntervetionName"},
+        {title:"Impact area",field:"ImpactedArea"},
+        {title:"Target beneficiaries",field:"NumberOfBeneficiaries"},
+        {title:"Partners",field:"Partners"},
+        {title:"District",field:"CurrentDistrict"}
         
     ]
     useEffect(() =>{
@@ -255,31 +255,18 @@ const dataEditor =(
     <div>
     
 
-    <div style={{
-    display:"flex", 
-    justifyContent:'space-between',
-    color:"white",
-    backgroundColor:'blueviolet',
-    padding: '10px'}}>
-    <text style={{}}>ADOLESCENT NUTRITION</text>
-     <Button 
-     style={{
-       backgroundColor:'white',
-       width: '15px',
-       height: '20px',
-      lineHeight: '16px'
-     }}
-     size="small"
-     startIcon={<AddIcon/>}
-    
-     onClick={()=>modalInsertFunction()}
-     >Add</Button>
+    <Typography variant='h3' gutterBottom>Adolescent Nutrition</Typography>
+            <IconButton 
+            onClick={()=>modalInsertFunction()}
+            >
+           <PostAddIcon/>
+           </IconButton>
     
 
-    </div>
+
    
 
-    <MaterialTable title="Interventions"
+    <MaterialTable title="Program Intervention(s)"
     data={data}
     columns={columns}
     
