@@ -50,6 +50,7 @@ function ShoolAndHealthProgram() {
       NumberOfBeneficiaries: '',
       PartnerName: " ",
       id: ''
+
 })
 
     // handle input data function
@@ -176,16 +177,15 @@ function ShoolAndHealthProgram() {
   
           <TextField className={classes.inputMaterial} 
           label="intervetion" 
-<<<<<<< HEAD
+
           placeholder='Enter Intervetion Name'
           name='InterventionName'
-||||||| c4e4b0d
+
           placeholder='Enter Intervetion Name'
           name='IntervetionName'
-=======
           placeholder='Enter Intervention Name'
           name='IntervetionName'
->>>>>>> f04a8ef4c63f613686bec5d78106b79822dc65aa
+
           onChange={handleChange}
           />
           <br/>
@@ -229,7 +229,7 @@ function ShoolAndHealthProgram() {
 
       const bodyDelete =(
         <div className={classes.modal}>
-        <p>Do you want to delete ?<b>{Intervetion&&Intervetion.InterventionName}</b>?</p>
+        <p>Do you want to delete <b>{Intervetion&&Intervetion.InterventionName}</b>?</p>
 
          <div align="right">
            <Button color="secondary" onClick={() => addIntervetionDelete()}>YES</Button>
