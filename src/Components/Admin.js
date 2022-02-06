@@ -45,6 +45,11 @@ import WaterSanitationAndHygiene from './programsPages/WaterSanitationAndHygiene
 import IntergratedHomeStead from './programsPages/IntergratedHomeStead';
 import InfantAndYoungChild from './programsPages/InfantAndYoungChild'
 import dam from './programsPages/dam'
+import ProgramBeneficiaries from './ProgramBeneficiaries';
+
+import WaterSanitationAndHygienBeneficiaries from './BeneficiaryPages/WaterSanitationAndHygienBeneficiaries';
+import HomeAndSchoolBeneficiaries from './BeneficiaryPages/HomeAndSchoolBeneficiaries';
+import AdolescentNutritionBeneficiaries from './BeneficiaryPages/AdolescentNutritionBeneficiaries';
 
 const drawerWidth = 240;
 
@@ -180,7 +185,7 @@ const MiniDrawer = props => {
     {
       text: "Beneficiaries",
       icon: <PermIdentityIcon />,
-      link:"/beneficiaries"
+      link:"/ProgramBeneficiaries"
     },
     {
       text: "Programs",
@@ -305,16 +310,19 @@ const MiniDrawer = props => {
 
         <Switch>
           <Route exact path = "/" render={() => <Dashboard/>}/>
+          <Route exact path = "/ProgramBeneficiaries" render={() => <ProgramBeneficiaries/>}/>
+
           <Route exact path = "/beneficiaries" render={() => <Beneficiaries/>}/>
           <Route exact path = "/programs" render={() => <Programs/>}/>
           <Route exact path = "/fieldsstaffs" render={() => <FieldStuffs/>}/>
           <Route exact path = "/programs/intervetions" render={()=><SchoolAndHealthProgram/>}/>
           <Route exact path="/programs/adolescentnutrion" render={() => <AdolescentNutrition/>}/>
           <Route exact path="/programs/WaterSanitationAndHygiene" render={() => <WaterSanitationAndHygiene/>}/>
-          {/* <Route exact path = "/programs/dam" render = {() => <dam/>}/> */}
-          <Route exact path = "/programs/dam" render = {() => <dam/>}/>
+          
           <Route exact path = "/programs/InfantAndYoungChild" render = {() => <InfantAndYoungChild/>}/>
-
+          <Route exact path ="/Beneficiaries/HomeAndSchoolBeneficiaries" render ={() =><HomeAndSchoolBeneficiaries/>}/>
+          <Route exact path ="/Beneficiaries/AdolescentNutritionBeneficiaries" render ={() =><AdolescentNutritionBeneficiaries/>}/>
+          <Route exact path ="/Beneficiaries/WaterSanitationAndHygienBeneficiaries" render={() =><WaterSanitationAndHygienBeneficiaries/>}/>
           </Switch>
 
           </Box>
