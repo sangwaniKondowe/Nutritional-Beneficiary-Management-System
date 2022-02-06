@@ -41,8 +41,10 @@ import { blue, blueGrey,grey,white } from '@material-ui/core/colors';
 import SchoolAndHealthProgram from './programsPages/SchoolAndHealthProgram';
 import AdolescentNutrition from './programsPages/AdolescentNutrition';
 import WaterSanitationAndHygiene from './programsPages/WaterSanitationAndHygiene';
-import IntergratedHomeStead from './programsPages/IntergratedHomeStead'
+// import IntergratedHomeStead from './programsPages/IntergratedHomeStead'
+import IntergratedHomeStead from './programsPages/IntergratedHomeStead';
 import InfantAndYoungChild from './programsPages/InfantAndYoungChild'
+import dam from './programsPages/dam'
 
 const drawerWidth = 240;
 
@@ -309,7 +311,8 @@ const MiniDrawer = props => {
           <Route exact path = "/programs/intervetions" render={()=><SchoolAndHealthProgram/>}/>
           <Route exact path="/programs/adolescentnutrion" render={() => <AdolescentNutrition/>}/>
           <Route exact path="/programs/WaterSanitationAndHygiene" render={() => <WaterSanitationAndHygiene/>}/>
-          <Route exact path = "/programs/IntergratedHomeStead" render = {() => <IntergratedHomeStead/>}/>
+          {/* <Route exact path = "/programs/dam" render = {() => <dam/>}/> */}
+          <Route exact path = "/programs/dam" render = {() => <dam/>}/>
           <Route exact path = "/programs/InfantAndYoungChild" render = {() => <InfantAndYoungChild/>}/>
 
           </Switch>

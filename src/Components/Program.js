@@ -218,7 +218,7 @@ export default function Program() {
             </Grid>
 
             <Grid item >
-            <Link to="/programs/IntegratedHomeStead" className={classes.link}>
+            <Link to="/programs/dam" className={classes.link}>
             <Card className={classes.root} elevation={4}>
                 <CardActionArea>
                     <CardMedia

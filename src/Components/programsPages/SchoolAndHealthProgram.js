@@ -51,6 +51,8 @@ function ShoolAndHealthProgram() {
       PartnerName: " ",
       id: ''
 
+      
+
 })
 
     // handle input data function
@@ -60,6 +62,7 @@ function ShoolAndHealthProgram() {
           ...prevState,
           [name]:value
         }))
+        
         
       }
       //insert data into the table
@@ -177,15 +180,8 @@ function ShoolAndHealthProgram() {
   
           <TextField className={classes.inputMaterial} 
           label="intervetion" 
-
           placeholder='Enter Intervetion Name'
           name='InterventionName'
-
-          placeholder='Enter Intervetion Name'
-          name='IntervetionName'
-          placeholder='Enter Intervention Name'
-          name='IntervetionName'
-
           onChange={handleChange}
           />
           <br/>
@@ -239,7 +235,7 @@ function ShoolAndHealthProgram() {
         </div>
       )
 
-      // editting function
+      // editting form
       const dataEdit =(
         <div className={classes.modal}>
           <h3 

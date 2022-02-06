@@ -44,6 +44,7 @@ function AdolescentNutrition() {
     const classes = useStyles();
     const [modalInsert, setModalInsert] = useState(false);
     const [modalEditor, setModalEditor] = useState(false);
+    const [modalDelete, setModalDelete] = useState(false);
     const [IntervetionDetails,setIntervetionDetails] = useState({
       CurrentDistrict: " ",
       ImpactedArea: " ",
@@ -191,6 +192,24 @@ const dataEditor =(
 
     )
 
+    const bodyDelete =(
+      <div className={classes.modal}>
+      <p>Do you want to delete <b>{IntervetionDetails&&IntervetionDetails.InterventionName}</b>?</p>
+
+       <div align="right">
+         <Button color="secondary" onClick={() => IntervetionDelete()}>YES</Button>
+         <Button onClick={() => interventionModalDelete()}>NO</Button>
+       </div>
+
+      </div>
+    )
+
+    const interventionModalDelete =() => {
+      
+      setModalDelete(!modalDelete);
+    }
+
+
     const columns = [
         {title:"Intervention",field:"IntervetionName"},
         {title:"Impact area",field:"ImpactedArea"},
@@ -217,10 +236,21 @@ const dataEditor =(
         modalInsertFunction();
 
       })}
+      //deleting 
+      const IntervetionDelete = async () => {
+        await axios.delete(updateUrl  + IntervetionDetails.id + "/")
+        .then(respose => {
+          setData(data.filter(InterventionName => InterventionName.id!==IntervetionDetails.id));
+          interventionModalDelete();
+          }).catch(error=>{
+            console.log(error)
+          })
+      }
+  
       // editting
-      
+      const updateUrl = "http://127.0.0.1:8000/api/adolescentIntervetion/"
       const editIntervetion = async () => {
-        await axios.put("http://127.0.0.1:8000/api/adolescentIntervetions" + "/",IntervetionDetails.id,IntervetionDetails)
+        await axios.put(updateUrl + IntervetionDetails.id + "/",IntervetionDetails)
         .then(respose => {
           var dataNueva = data;
           
@@ -247,7 +277,9 @@ const dataEditor =(
       //select data 
     const selectIntervetion =(IntervetionName,caso)=>{
       setIntervetionDetails(IntervetionName);
-      (caso=="Edit")&&modalEditFunction();
+      (caso=="Edit")? modalEditFunction():
+      interventionModalDelete()
+
 
     }
 
@@ -282,7 +314,8 @@ const dataEditor =(
       },
       {
         icon:Delete,
-        tooltip:'delete'
+        tooltip:'delete',
+        onClick: (event,rowData) => selectIntervetion(rowData, "Delete")
       }
     ]}
     
@@ -301,6 +334,14 @@ const dataEditor =(
     onClose={modalEditFunction}
     >
      {dataEditor} 
+
+    </Modal>
+
+    <Modal
+    open={modalDelete}
+    onClose={interventionModalDelete}
+    >
+     {bodyDelete} 
 
     </Modal>
 
