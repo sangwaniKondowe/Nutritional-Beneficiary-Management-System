@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 import {Modal,TextField, Typography, IconButton } from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 import axios from 'axios';
+import  {districtList} from './District'
+
 
 import MaterialTable from 'material-table'
 
@@ -36,13 +38,18 @@ const useStyles = makeStyles((theme) => ({
   }))
 
 
+  
 
-function ShoolAndHealthProgram() {
+
+
+function ShoolAndHealthProgram(props) {
     const [data, setData] = useState([])
     const classes = useStyles();
+    // const districts = districtList()
     const [modalInsert, setModalInsert] = useState(false);
     const [modalEditor, setModalEditor] = useState(false);
     const [modalDelete, setModalDelete] = useState(false);
+    
     const [Intervetion,setIntervetion] = useState({
       District: " ",
       ImpactArea: " ",
@@ -54,6 +61,9 @@ function ShoolAndHealthProgram() {
       
 
 })
+
+
+
 
     // handle input data function
     const handleChange = e => {
@@ -109,7 +119,7 @@ function ShoolAndHealthProgram() {
       await axios.get(baseUrl)
       .then(respose =>{
         setData(respose.data);
-        console.log(respose.data)
+        
       })
 
     }
@@ -157,7 +167,7 @@ function ShoolAndHealthProgram() {
           })
         }
 
-
+       
         const addIntervetionDelete = async () => {
           await axios.delete(updateUrl + Intervetion.id + "/")
           .then(respose => {
@@ -167,6 +177,17 @@ function ShoolAndHealthProgram() {
               console.log(error)
             })
         }
+
+    // const handleSelected = async() => {
+    //   const districtList = [];
+    //   {Intervetion.forEach(function(element){
+    //     districtList.push({value:element.District})
+    //   })}
+    // } 
+        //  {Intervetion.forEach(function(element){
+        //    districtList.push({value:element.District})
+        //  }
+        //  )}
 
 
     const dataInsert =(
@@ -179,40 +200,61 @@ function ShoolAndHealthProgram() {
   
   
           <TextField className={classes.inputMaterial} 
+          required
           label="intervetion" 
           placeholder='Enter Intervetion Name'
           name='InterventionName'
+          type = 'text'
+          
+          value={Intervetion.InterventionName}
           onChange={handleChange}
           />
           <br/>
+
           <TextField className={classes.inputMaterial} 
+          required
           label="Impacted Area" 
           placeholder='Enter Impacted Area'
           name='ImpactArea'
+          type = "text"
+          value={Intervetion.ImpactArea}
           onChange={handleChange}
           />
           <br/>
           <TextField className={classes.inputMaterial} 
+          required
           label="Target Beneficiaries"
           placeholder='Enter Number of Beneficiaries'
           name='NumberOfBeneficiaries'
+          type="number" min="0"
+          value={Intervetion.NumberOfBeneficiaries}
           onChange={handleChange}
   
            />
           <br/>
           <TextField className={classes.inputMaterial} 
+          required
           label="Partners" 
           placeholder='Enter Partner'
           name='PartnerName'
+          type = "text"
+          value={Intervetion.PartnerName}
           onChange={handleChange}
           />
           <br/>
+        
+        
           <TextField className={classes.inputMaterial} 
           label="District" 
+          native = "true"
           placeholder='Enter District'
+      
           name='District'
+          type = "text"
+          value={Intervetion.District}
           onChange={handleChange}
-          />
+          
+          /> 
           <br/>
           <diV align="right">
             <Button color='primary' onClick ={() =>addIntervetionPost()}>Insert</Button>
@@ -316,6 +358,7 @@ function ShoolAndHealthProgram() {
         options={{
             paging:false,
             exportButton:true,
+            actionsColumnIndex: -1
             
         }}
         actions={[
@@ -327,7 +370,8 @@ function ShoolAndHealthProgram() {
           {
             icon:Delete,
             tooltip:'delete',
-            onClick: (event, rowData) => selectIntervetion(rowData,'delete')
+            onClick: (event, rowData) => selectIntervetion(rowData,'delete'),
+            iconProps: { color:"red" }
           }
         ]}
         />

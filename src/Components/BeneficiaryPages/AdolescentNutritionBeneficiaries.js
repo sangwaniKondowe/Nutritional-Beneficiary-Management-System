@@ -9,7 +9,7 @@ import MaterialTable from 'material-table';
 function AdolescentNutritionBeneficiaries() {
     const [data, setData] = useState([])
     const columns = [
-        { title:'Intervetion',field:'InterventionName'},
+        { title:'Intervetion',field:'IntervertionName'},
         { title:'Full Name',field:'FullName'},
         { title:'Gender',field:'Gender'},
         { title:'Date Of Birth',field:'DateOfBirth'},
@@ -22,7 +22,15 @@ function AdolescentNutritionBeneficiaries() {
     const getBeneficiaries = async () => {
       await axios.get(baseUrl)
       .then(response => {
-         setData(response.data);
+      let actualData = []
+        for(let x = 0; x < response.data.length; x++){
+              let obj = {...response.data[x], IntervertionName: 
+                response.data[x].IntervertionName==null ? "no intervation" :
+                 response.data[x].IntervertionName .IntervetionName}
+              actualData.push(obj)
+            }
+    
+         setData(actualData);
       })
         
     }
@@ -44,6 +52,7 @@ function AdolescentNutritionBeneficiaries() {
      options={{
       paging:false,
       exportButton:true,
+      actionsColumnIndex: -1
       
   }}
 

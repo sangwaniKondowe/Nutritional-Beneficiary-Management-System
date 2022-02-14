@@ -309,6 +309,7 @@ const MiniDrawer = props => {
        
 
         <Switch>
+          
           <Route exact path = "/" render={() => <Dashboard/>}/>
           <Route exact path = "/ProgramBeneficiaries" render={() => <ProgramBeneficiaries/>}/>
 

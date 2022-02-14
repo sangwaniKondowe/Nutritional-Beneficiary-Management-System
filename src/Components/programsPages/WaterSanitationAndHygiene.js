@@ -84,7 +84,7 @@ function WaterSinitationAndHygiene() {
             [name]:value
       
           }))
-          console.log(WaterSanitationIntervention)
+        
           
         }
         // posting data into database through api
@@ -189,6 +189,8 @@ function WaterSinitationAndHygiene() {
         label="intervetion" 
         placeholder='Enter Intervetion Name'
         name='IntervetionName'
+        type="text"
+        value ={WaterSanitationIntervention.IntervetionName}
         onChange={handleChange}
         />
         <br/>
@@ -196,6 +198,8 @@ function WaterSinitationAndHygiene() {
         label="Impacted Area" 
         placeholder='Enter Impacted Area'
         name='ImpactedArea'
+        type="text"
+        value={WaterSanitationIntervention.ImpactedArea}
         onChange={handleChange}
         />
         <br/>
@@ -203,6 +207,8 @@ function WaterSinitationAndHygiene() {
         label="Target Beneficiaries"
         placeholder='Enter Number of Beneficiaries'
         name='NumberOfBeneficiaries'
+        type="number"
+        value={WaterSanitationIntervention.NumberOfBeneficiaries}
         onChange={handleChange}
 
          />
@@ -211,6 +217,8 @@ function WaterSinitationAndHygiene() {
         label="Partners" 
         placeholder='Enter Partner'
         name='Partners'
+        type=""
+        value={WaterSanitationIntervention.Partners}
         onChange={handleChange}
         />
         <br/>
@@ -218,6 +226,7 @@ function WaterSinitationAndHygiene() {
         label="District" 
         placeholder='Enter District'
         name='District'
+        value={WaterSanitationIntervention.District}
         onChange={handleChange}
         />
         <br/>
@@ -307,7 +316,8 @@ function WaterSinitationAndHygiene() {
     columns={columns}
     options={{
         paging:false,
-        exportButton:true
+        exportButton:true,
+        actionsColumnIndex: -1
     }}
 
     actions={[

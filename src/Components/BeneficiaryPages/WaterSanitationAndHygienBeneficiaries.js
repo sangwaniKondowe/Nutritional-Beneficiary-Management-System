@@ -22,7 +22,14 @@ function WaterSanitationAndHygienBeneficiaries() {
     const getBeneficiaries = async () => {
       await axios.get(baseUrl)
       .then(response => {
-         setData(response.data);
+        let actualData = []
+        for(let x = 0; x < response.data.length; x++){
+              let obj = {...response.data[x], InterventionName: 
+                response.data[x].InterventionName==null ? "no intervation" :
+                 response.data[x].InterventionName .InterventionName}
+              actualData.push(obj)
+            }
+         setData(actualData);
       })
     
         
@@ -45,6 +52,7 @@ function WaterSanitationAndHygienBeneficiaries() {
      options={{
       paging:false,
       exportButton:true,
+      actionsColumnIndex: -1
       
   }}
 

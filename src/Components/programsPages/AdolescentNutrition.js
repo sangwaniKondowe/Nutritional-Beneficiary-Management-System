@@ -304,7 +304,8 @@ const dataEditor =(
     
     options={{
         paging:false,
-        exportButton:true
+        exportButton:true,
+        actionsColumnIndex: -1
     }}
     actions={[
       {
