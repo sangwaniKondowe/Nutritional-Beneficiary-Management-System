@@ -8,7 +8,7 @@ import Delete from '@material-ui/icons/Delete'
 import Button from '@material-ui/core/Button';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import axios from 'axios';
-import {Modal,TextField, IconButton, Typography} from '@material-ui/core'
+import {Modal,TextField, IconButton, Typography, Select, FormControl, InputLabel} from '@material-ui/core'
 import {makeStyles} from '@material-ui/core/styles'
 
 
@@ -222,13 +222,49 @@ function WaterSinitationAndHygiene() {
         onChange={handleChange}
         />
         <br/>
-        <TextField className={classes.inputMaterial} 
-        label="District" 
-        placeholder='Enter District'
-        name='District'
-        value={WaterSanitationIntervention.District}
-        onChange={handleChange}
-        />
+        
+        <FormControl required className={classes.inputMaterial}>
+        <InputLabel>District</InputLabel>
+        <Select
+          native
+          onChange={handleChange}
+          name="district"
+          inputProps={{
+            id: 'district-native-required',
+          }}
+        
+        >
+          <option aria-label="District" value="" />
+          <option value="Zomba">Zomba</option>
+          <option value="Thyolo">Thyolo</option>
+          <option value="Salima">Salima</option>
+          <option value="Rumphi">Rumphi</option>
+          <option value="Phalombe">Phalombe</option>
+          <option value="Ntchisi">Ntchisi</option>
+          <option value="Ntcheu">Ntcheu</option>
+          <option value="Nsanje">Nsanje</option>
+          <option value="Nkhatabay">Nkhatabay</option>
+          <option value="Nkhotakota">Nkhotakota</option>
+          <option value="Neno">Neno</option>
+          <option value="Mzimba">Mzimba</option>
+          <option value="Mwanza">Mwanza</option>
+          <option value="Mulanje">Mulanje</option>
+          <option value="Mchinji">Mchinji</option>
+          <option value="Mangochi">Mangochi</option>
+          <option value="Machinga">Machinga</option>
+          <option value="Lilongwe">Lilongwe</option>
+          <option value="Likoma">Likoma</option>
+          <option value="Kasungu">Kasungu</option>
+          <option value="Karonga">Karonga</option>
+          <option value="Dowa">Dowa</option>
+          <option value="Dedza">Dedza</option>
+          <option value="Chitipa">Chitipa</option>
+          <option value="Chiradzulu">Chiradzulu</option>
+          <option value="Chikwawa">Chikwawa</option>
+          <option value="Blantyre">Blantyre</option>
+          <option value="Balaka">Balaka</option>
+        </Select>
+        </FormControl>
         <br/>
         <diV align="right">
           <Button color='primary' onClick={() => interventionPost()}>Insert</Button>

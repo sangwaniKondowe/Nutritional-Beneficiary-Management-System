@@ -16,6 +16,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import EqualizerIcon from '@material-ui/icons/Equalizer'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
@@ -27,6 +28,7 @@ import FieldStuffs from './FieldStuffs'
 import Beneficiaries from './Beneficiaries'
 import Programs from './Program'
 import Dashboard  from './Dashboard';
+import Reports  from './Reports'
 
 import {Switch,Route} from 'react-router-dom'
 import { NavLink } from 'react-router-dom';
@@ -50,6 +52,7 @@ import ProgramBeneficiaries from './ProgramBeneficiaries';
 import WaterSanitationAndHygienBeneficiaries from './BeneficiaryPages/WaterSanitationAndHygienBeneficiaries';
 import HomeAndSchoolBeneficiaries from './BeneficiaryPages/HomeAndSchoolBeneficiaries';
 import AdolescentNutritionBeneficiaries from './BeneficiaryPages/AdolescentNutritionBeneficiaries';
+import AdolescentNutritionReport from './ReportPages/AdolescentNutritionReport';
 
 const drawerWidth = 240;
 
@@ -197,7 +200,13 @@ const MiniDrawer = props => {
     icon: <PeopleIcon />,
     link:"/fieldsstaffs"
 
-    }
+    },
+    {
+      text: "Report",
+      icon: <EqualizerIcon />,
+      link:"/Reports"
+  
+      }
 
   ]
 
@@ -316,6 +325,7 @@ const MiniDrawer = props => {
           <Route exact path = "/beneficiaries" render={() => <Beneficiaries/>}/>
           <Route exact path = "/programs" render={() => <Programs/>}/>
           <Route exact path = "/fieldsstaffs" render={() => <FieldStuffs/>}/>
+          <Route exact path = "/Reports" render={() => <Reports/>}/>
           <Route exact path = "/programs/intervetions" render={()=><SchoolAndHealthProgram/>}/>
           <Route exact path="/programs/adolescentnutrion" render={() => <AdolescentNutrition/>}/>
           <Route exact path="/programs/WaterSanitationAndHygiene" render={() => <WaterSanitationAndHygiene/>}/>
@@ -324,6 +334,7 @@ const MiniDrawer = props => {
           <Route exact path ="/Beneficiaries/HomeAndSchoolBeneficiaries" render ={() =><HomeAndSchoolBeneficiaries/>}/>
           <Route exact path ="/Beneficiaries/AdolescentNutritionBeneficiaries" render ={() =><AdolescentNutritionBeneficiaries/>}/>
           <Route exact path ="/Beneficiaries/WaterSanitationAndHygienBeneficiaries" render={() =><WaterSanitationAndHygienBeneficiaries/>}/>
+          <Route exact path ="/Report/AdolescentNutritionReport" render={() =><AdolescentNutritionReport/>}/>
           </Switch>
 
           </Box>

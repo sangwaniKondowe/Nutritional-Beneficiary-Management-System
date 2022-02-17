@@ -40,7 +40,7 @@ function HomeAndSchoolBeneficiaries() {
     const [data, setData] = useState([])
     // const  [insert, setInsert] = useSate
     const columns = [
-        { title:'Intervetion',field:'InterventionName:'},
+        { title:'Intervetion',field:'Intervetion'},
         { title:'Full Name',field:'FullName'},
         { title:'Gender',field:'Gender'},
         { title:'Date Of Birth',field:'DateOfBirth'},
@@ -57,10 +57,11 @@ function HomeAndSchoolBeneficiaries() {
       .then(response => {
         let actualData = []
         for(let x = 0; x < response.data.length; x++){
-              let obj = {...response.data[x], InterventionName: 
-                response.data[x].InterventionName==null ? "no intervation" :
-                 response.data[x].InterventionName.IntervetionName}
+              let obj = {...response.data[x], Intervetion: 
+                response.data[x].Intervetion==null ? "no intervation" :
+                 response.data[x].Intervetion.InterventionName}
               actualData.push(obj)
+              console.log(response.data[x])
             }
     
          setData(actualData);
